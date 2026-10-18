@@ -386,30 +386,55 @@ h2 {
 }
 
 .contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 48px;
   padding-top: 88px;
   padding-bottom: 92px;
 }
 
 .contact-content h2 {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   letter-spacing: -0.02em;
 }
 
-.contact-details {
-  max-width: 620px;
+.contact-whatsapp {
+  margin-bottom: 20px;
+}
+
+.contact-email,
+.contact-address {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.contact-location > .eyebrow {
+  margin-bottom: 24px;
+}
+
+.location-item + .location-item {
   margin-top: 24px;
 }
 
-.contact-details p {
+.contact-label {
   margin-bottom: 7px;
   color: var(--text-secondary);
-  font-size: 0.82rem;
-  line-height: 1.65;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
 }
 
-.contact-details p:last-child {
-  margin-bottom: 0;
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 .email-link {
