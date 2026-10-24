@@ -93,6 +93,7 @@ a:focus-visible {
 .hero {
   padding-top: 140px;
   padding-bottom: 108px;
+  overflow: hidden;
 }
 
 .hero-copy {
@@ -462,11 +463,35 @@ h2 {
 
 html.js .fade-in {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateY(30px);
+  transition:
+    opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 html.js .fade-in.is-visible {
   opacity: 1;
+  transform: translateY(0);
+}
+
+.service-item.fade-in:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.service-item.fade-in:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.service-item.fade-in:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.service-item.fade-in:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+.service-item.fade-in:nth-child(6) {
+  transition-delay: 0.5s;
 }
 
 @media (max-width: 700px) {
@@ -580,4 +605,100 @@ html.js .fade-in.is-visible {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Batch 2: Smart Navbar & Parallax */
+.site-header {
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.hero-copy {
+  transition:
+    transform 0.1s ease-out,
+    opacity 0.1s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Batch 1: UI/UX Face-lift */
+body {
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.7;
+}
+
+.text-link span {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.text-link:hover span {
+  transform: translateX(6px);
+}
+
+.project-image {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.project-image img {
+  transition:
+    transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.6s ease;
+  filter: grayscale(40%) brightness(0.9);
+  will-change: transform, filter;
+}
+
+.project-item:hover .project-image img {
+  transform: scale(1.05);
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Batch 3: Pre-loader & Custom Cursor */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: white;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.6s ease;
+}
+
+.preloader-logo {
+  height: 60px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.preloader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.text-reveal span {
+  color: #d1d1d6;
+  transition: color 0.2s ease;
 }
