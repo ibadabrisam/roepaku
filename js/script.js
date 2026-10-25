@@ -44,6 +44,8 @@ function enableScrollEffects() {
   const heroCopy = document.querySelector(".hero-copy");
   window.addEventListener("scroll", () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // 1. Logika Smart Navbar (Tetap jalan di semua device)
     if (header) {
       if (scrollTop > lastScrollTop && scrollTop > 80) {
         header.classList.add("nav-hidden");
@@ -52,13 +54,21 @@ function enableScrollEffects() {
       }
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    if (heroCopy) {
-      // Teks memudar total di scroll 400px
-      const fadeThreshold = 400;
-      heroCopy.style.opacity = Math.max(0, 1 - scrollTop / fadeThreshold);
 
-      // Teks bergerak ke ATAS (nilai negatif) agar tidak menabrak elemen di bawahnya
-      heroCopy.style.transform = `translateY(${scrollTop * -0.2}px)`;
+    // 2. Logika Parallax HANYA untuk Desktop (lebar > 768px)
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+    if (heroCopy) {
+      if (isDesktop) {
+        // Efek Parallax untuk Laptop/PC
+        const fadeThreshold = 400;
+        heroCopy.style.opacity = Math.max(0, 1 - scrollTop / fadeThreshold);
+        heroCopy.style.transform = `translateY(${scrollTop * -0.2}px)`;
+      } else {
+        // Di HP, matikan efek Parallax. Biarkan teks normal dan scroll mulus.
+        heroCopy.style.opacity = 1;
+        heroCopy.style.transform = `translateY(0)`;
+      }
     }
   });
 }
